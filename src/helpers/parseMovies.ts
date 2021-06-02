@@ -7,6 +7,7 @@ const parseMovies = (movies: SearchResult[]): SearchResult[] => {
   return movies.map(movie => {
     movie.poster_path = movie.poster_path ? baseImageURL + movie.poster_path : noImage;
     movie.backdrop_path = movie.backdrop_path ? baseImageURL + movie.backdrop_path : noImage;
+    movie.isFav = !!localStorage.getItem(movie.id.toString());
     return movie;
   });
 };
