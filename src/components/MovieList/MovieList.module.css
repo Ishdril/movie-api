@@ -1,0 +1,7 @@
+.list__container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 2rem;
+  justify-content: center;
+}
