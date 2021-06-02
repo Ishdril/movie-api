@@ -1,0 +1,57 @@
+.movie-container {
+  width: 300px;
+  height: 150px;
+  margin: 10px;
+  overflow: hidden;
+  position: relative;
+  display: inline-block;
+  transition: transform 0.2s;
+}
+
+.movie-container:hover,
+.movie-container:focus {
+  transform: scale(1.1);
+  z-index: 1;
+}
+
+.movie-container:hover .movie .movie-fav-button,
+.movie-container:focus .movie .movie-fav-button {
+  display: flex;
+}
+
+.movie {
+  display: flex;
+  flex-direction: row;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.movie__title  {
+  margin: 5px;
+  color: var(--text-bright);
+  text-shadow: 0 0 3px var(--background-dark);
+}
+
+.movie__fav-btn {
+  display: none;
+  margin: 5px;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  filter: drop-shadow(0 0 2px var(--bg-black));
+}
+
+.movie:hover > .movie__fav-btn {
+  display: inline;
+}
+
+.movie__show-btn {
+  display: flex;
+}

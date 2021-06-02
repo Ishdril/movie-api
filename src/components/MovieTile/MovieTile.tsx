@@ -1,6 +1,7 @@
 import SearchResult from '../../interfaces/searchResult';
 import addFav from '../../assets/addFav.svg';
 import removeFav from '../../assets/removeFav.svg';
+import styles from './MovieTile.module.css';
 
 interface MovieTileProps {
   movie: SearchResult;
@@ -8,18 +9,22 @@ interface MovieTileProps {
 
 const MovieTile = ({ movie }: MovieTileProps) => {
   return (
-    <div className="movie-container">
+    <div className={styles['movie-container']}>
       <div
-        className="movie"
+        className={styles['movie']}
         style={{ backgroundImage: `url(${movie.backdrop_path})` }}
         onClick={event => {
           if (event.currentTarget === event.target) {
           } // TODO: handle movie Details
         }}
       >
-        <div className="movie-title">{movie.title}</div>
+        <div className={styles['movie__title']}>{movie.title}</div>
         {
-          <button className={'movie-fav-button' + (movie.isFav ? ' show-btn' : '')}>
+          <button
+            className={`${styles['movie__fav-btn']} ${
+              movie.isFav ? styles['movie__show-btn'] : ''
+            }`}
+          >
             {' '}
             {/* TODO: handle click favourites */}
             <img
