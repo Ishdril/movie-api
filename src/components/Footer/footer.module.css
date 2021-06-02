@@ -1,0 +1,23 @@
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #101010;
+  color: white;
+  padding: 2rem;
+}
+
+.footer__tmdb > img {
+  width: 120px;
+}
+
+.footer__tmdb > p {
+  margin: 0 auto 1rem auto;
+}
+
+.footer__copyright {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
