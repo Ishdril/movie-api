@@ -5,9 +5,10 @@ import styles from './MovieTile.module.css';
 
 interface MovieTileProps {
   movie: SearchResult;
+  favHandler: (id: SearchResult['id']) => void;
 }
 
-const MovieTile = ({ movie }: MovieTileProps) => {
+const MovieTile = ({ movie, favHandler }: MovieTileProps) => {
   return (
     <div className={styles['movie-container']}>
       <div
@@ -24,9 +25,8 @@ const MovieTile = ({ movie }: MovieTileProps) => {
             className={`${styles['movie__fav-btn']} ${
               movie.isFav ? styles['movie__show-btn'] : ''
             }`}
+            onClick={() => favHandler(movie.id)}
           >
-            {' '}
-            {/* TODO: handle click favourites */}
             <img
               src={movie.isFav ? removeFav : addFav}
               alt={movie.isFav ? 'remove from favourites' : 'add to favourites'}

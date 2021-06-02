@@ -14,10 +14,27 @@ function App() {
     });
   }, []);
 
+  const saveFavLocally = (movieId: number, isFav: boolean): void => {
+    isFav
+      ? localStorage.setItem(movieId.toString(), isFav.toString())
+      : localStorage.removeItem(movieId.toString());
+  };
+
+  const favHandler = (movieId: SearchResult['id']): void => {
+    const updatedMovies = movies.filter(movie => {
+      if (movie.id === movieId) {
+        movie.isFav = !movie.isFav;
+        saveFavLocally(movieId, movie.isFav);
+      }
+      return movie;
+    });
+    setMovies(updatedMovies);
+  };
+
   return (
     <div className="App">
       <Navbar />
-      <MovieList movieList={movies} />
+      <MovieList movieList={movies} favHandler={favHandler} />
       <Footer />
     </div>
   );

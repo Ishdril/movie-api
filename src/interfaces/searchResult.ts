@@ -5,6 +5,7 @@ export default interface SearchResult {
   backdrop_path: string | null;
   genre_ids: Genre['id'][];
   id: number;
+  isFav?: boolean;
   media_type?: string;
   original_language: string;
   original_title: string;
