@@ -2,14 +2,14 @@ import { createContext } from 'react';
 import FavDictionary from '../interfaces/FavDictionary';
 import SearchResult from '../interfaces/searchResult';
 
-interface FavContext {
+interface IFavContext {
   favDictionary: FavDictionary;
   favHandler: (movie: SearchResult) => void;
 }
 
-const favContext = createContext<FavContext>({
+const FavContext = createContext<IFavContext>({
   favDictionary: {},
   favHandler: () => {},
 });
 
-export default favContext;
+export default FavContext;

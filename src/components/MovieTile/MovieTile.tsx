@@ -2,7 +2,7 @@ import { MouseEvent, useContext } from 'react';
 import SearchResult from '../../interfaces/searchResult';
 import addFav from '../../assets/addFav.svg';
 import removeFav from '../../assets/removeFav.svg';
-import favContext from '../../services/FavContext';
+import FavContext from '../../services/FavContext';
 import MovieDetailsContext from '../../services/MovieDetailsContext';
 import styles from './MovieTile.module.css';
 
@@ -11,7 +11,7 @@ interface MovieTileProps {
 }
 
 const MovieTile = ({ movie }: MovieTileProps) => {
-  const { favDictionary, favHandler } = useContext(favContext);
+  const { favDictionary, favHandler } = useContext(FavContext);
   const { movieDetailsHandler } = useContext(MovieDetailsContext);
 
   const clickFavHandler = (e: MouseEvent): void => {

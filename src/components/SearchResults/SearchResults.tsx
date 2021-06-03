@@ -1,6 +1,6 @@
-import styles from './SearchResults.module.css';
 import SearchResult from '../../interfaces/searchResult';
 import MovieList from '../MovieList/MovieList';
+import styles from './SearchResults.module.css';
 
 interface SearchResultsProps {
   movieList: SearchResult[];

@@ -18,7 +18,7 @@ import {
   getToken,
   markAsFavorite,
 } from './services/api';
-import favContext from './services/FavContext';
+import FavContext from './services/FavContext';
 import LoginContext from './services/LoginContext';
 import MovieDetailsContext from './services/MovieDetailsContext';
 
@@ -102,7 +102,7 @@ function App() {
 
   return (
     <div className="App">
-      <favContext.Provider value={{ favDictionary, favHandler }}>
+      <FavContext.Provider value={{ favDictionary, favHandler }}>
         <LoginContext.Provider value={{ sessionId, userId, handleLogout }}>
           <MovieDetailsContext.Provider value={{ movieDetails, movieDetailsHandler }}>
             {movieDetails.id ? <MovieDetails /> : null}
@@ -118,7 +118,7 @@ function App() {
             </div>
           </MovieDetailsContext.Provider>
         </LoginContext.Provider>
-      </favContext.Provider>
+      </FavContext.Provider>
       <Footer />
     </div>
   );
