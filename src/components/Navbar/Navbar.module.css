@@ -1,0 +1,26 @@
+.navbar {
+  position: sticky;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 2rem;
+  background-color: var(--bg-black);
+  z-index: 2;
+}
+
+.navbar > input,
+.login {
+  background-color: var(--bg-gray);
+  border-radius: 5px;
+  padding: 1rem;
+  border: 1px solid gray;
+}
+
+.navbar > input:focus {
+  outline: none;
+}
+
+.login {
+  display: flex;
+  align-items: center;
+}

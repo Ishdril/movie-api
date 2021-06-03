@@ -1,0 +1,15 @@
+.search__bg {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #1a1a1acc;
+  height: calc(100vh - 100%);
+  z-index: 2;
+}
+
+.search__container {
+  background-color: var(--bg-black);
+  width: 99vw;
+  padding: 2rem;
+  filter: opacity(100%);
+}

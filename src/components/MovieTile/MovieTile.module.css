@@ -6,12 +6,19 @@
   position: relative;
   display: inline-block;
   transition: transform 0.2s;
+  scroll-snap-align: start;
 }
 
 .movie-container:hover,
 .movie-container:focus {
   transform: scale(1.1);
   z-index: 1;
+}
+
+.movie-container:hover .movie,
+.movie-container:focus .movie {
+  background-blend-mode: soft-light;
+  background-color: var(--bg-gray);
 }
 
 .movie-container:hover .movie .movie-fav-button,
@@ -32,10 +39,12 @@
   cursor: pointer;
 }
 
-.movie__title  {
+.movie__title {
   margin: 5px;
-  color: var(--text-bright);
-  text-shadow: 0 0 3px var(--background-dark);
+  height: 31px;
+  text-shadow: 0 0 3px var(--bg-black);
+  display: flex;
+  align-items: center;
 }
 
 .movie__fav-btn {

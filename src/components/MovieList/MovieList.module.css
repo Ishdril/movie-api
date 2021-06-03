@@ -1,7 +1,25 @@
-.list__container {
+.list__container-horizontal {
+  margin: 2rem;
+  display: flex;
+  flex-direction: column;
+  overflow-x: auto;
+  overflow-y: hidden;
+  color: var(--text-bright);
+  scroll-snap-type: x mandatory;
+}
+
+.list__container-horizontal::-webkit-scrollbar {
+  display: none;
+}
+
+.list__container-grid {
+  margin: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.scrollable {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  margin: 2rem;
-  justify-content: center;
+  min-width: fit-content;
 }
