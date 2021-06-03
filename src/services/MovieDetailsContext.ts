@@ -1,14 +1,14 @@
-import React, { createContext } from 'react';
-import Movie, { initialMovie } from '../interfaces/movie';
+import { createContext } from 'react';
+import IMovieDetails, { initialMovie } from '../interfaces/movieDetails';
 
 interface IMovieDetailsContext {
-  movieDetails: Movie;
-  setMovieDetails: React.Dispatch<React.SetStateAction<Movie>>;
+  movieDetails: IMovieDetails;
+  movieDetailsHandler: (movieId: number) => void;
 }
 
 const MovieDetailsContext = createContext<IMovieDetailsContext>({
   movieDetails: initialMovie,
-  setMovieDetails: () => {},
+  movieDetailsHandler: () => {},
 });
 
 export default MovieDetailsContext;

@@ -2,12 +2,15 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import styles from './App.module.css';
 import Footer from './components/Footer/Footer';
+import MovieDetails from './components/MovieDetails/MovieDetails';
 import MovieList from './components/MovieList/MovieList';
 import Navbar from './components/Navbar/Navbar';
 import FavDictionary from './interfaces/FavDictionary';
+import Movie, { initialMovie } from './interfaces/movieDetails';
 import SearchResult from './interfaces/searchResult';
 import {
   createSession,
+  fetchMovieDetails,
   getAccountDetails,
   getDiscoverMovies,
   getFavMovies,
@@ -16,6 +19,7 @@ import {
 } from './services/api';
 import favContext from './services/FavContext';
 import LoginContext from './services/LoginContext';
+import MovieDetailsContext from './services/MovieDetailsContext';
 
 function App() {
   const [movies, setMovies] = useState<SearchResult[]>([]);
@@ -23,6 +27,7 @@ function App() {
   const [favDictionary, setFavDictionary] = useState<FavDictionary>({});
   const [sessionId, setSessionId] = useState<string>(localStorage.getItem('session_id') || '');
   const [userId, setUserId] = useState<number>(0);
+  const [movieDetails, setMovieDetails] = useState<Movie>(initialMovie);
   const { search } = useLocation();
 
   useEffect(() => {
@@ -70,15 +75,26 @@ function App() {
     });
   };
 
+  const movieDetailsHandler = (movieId: number): void => {
+    movieId
+      ? fetchMovieDetails(movieId).then(movie => {
+          setMovieDetails(movie);
+        })
+      : setMovieDetails(initialMovie);
+  };
+
   return (
     <div className="App">
       <favContext.Provider value={{ favDictionary, favHandler }}>
         <LoginContext.Provider value={{ sessionId, userId }}>
-          <Navbar />
-          <div className={styles['content']}>
-            <MovieList direction="horizontal" movieList={favMovies} />
-            <MovieList direction="grid" movieList={movies} />
-          </div>
+          <MovieDetailsContext.Provider value={{ movieDetails, movieDetailsHandler }}>
+            {movieDetails.id ? <MovieDetails /> : null}
+            <Navbar />
+            <div className={styles['content']}>
+              <MovieList direction="horizontal" movieList={favMovies} />
+              <MovieList direction="grid" movieList={movies} />
+            </div>
+          </MovieDetailsContext.Provider>
         </LoginContext.Provider>
       </favContext.Provider>
       <Footer />
