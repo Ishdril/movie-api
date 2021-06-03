@@ -59,7 +59,6 @@ function App() {
   }, [sessionId]);
 
   const favHandler = (movie: SearchResult): void => {
-    console.log('here');
     const newFavValue = !favDictionary[movie.id];
     markAsFavorite(sessionId, userId, movie.id, newFavValue).then(res => {
       if (res) {
@@ -99,8 +98,8 @@ function App() {
             {movieDetails.id ? <MovieDetails /> : null}
             <Navbar />
             <div className={styles['content']}>
-              <MovieList direction="horizontal" movieList={favMovies} />
-              <MovieList direction="grid" movieList={movies} />
+              <MovieList title="Favourites" direction="horizontal" movieList={favMovies} />
+              <MovieList title="Discover new movies" direction="grid" movieList={movies} />
             </div>
           </MovieDetailsContext.Provider>
         </LoginContext.Provider>

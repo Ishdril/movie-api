@@ -36,12 +36,12 @@
   font-size: 1.5rem;
 }
 
-h1 {
+.summary__properties > h1 {
   font-size: 3rem;
   margin: 0;
 }
 
-h2 {
+.summary__properties > h2 {
   font-size: 1.5rem;
   margin-top: 0.5rem;
   color: #9c9c9c;

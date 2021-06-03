@@ -1,11 +1,12 @@
 .list__container-horizontal {
-  margin: 2rem;
   display: flex;
   flex-direction: column;
   overflow-x: auto;
   overflow-y: hidden;
   color: var(--text-bright);
   scroll-snap-type: x mandatory;
+  height: 220px;
+  justify-content: center;
 }
 
 .list__container-horizontal::-webkit-scrollbar {
@@ -13,7 +14,6 @@
 }
 
 .list__container-grid {
-  margin: 2rem;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
@@ -22,4 +22,19 @@
   display: flex;
   flex-direction: row;
   min-width: fit-content;
+}
+
+.list {
+  margin: 2rem;
+}
+
+.list > h1 {
+  font-size: 2rem;
+}
+
+.favorites__add-text {
+  font-size: 1.5rem;
+  color: #9c9c9c;
+  font-variant: small-caps;
+  margin: 0 auto;
 }
