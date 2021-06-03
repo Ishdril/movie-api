@@ -83,10 +83,18 @@ function App() {
       : setMovieDetails(initialMovie);
   };
 
+  const handleLogout = (): void => {
+    setSessionId('');
+    setUserId(0);
+    setFavMovies([]);
+    setFavDictionary({});
+    localStorage.removeItem('session_id');
+  };
+
   return (
     <div className="App">
       <favContext.Provider value={{ favDictionary, favHandler }}>
-        <LoginContext.Provider value={{ sessionId, userId }}>
+        <LoginContext.Provider value={{ sessionId, userId, handleLogout }}>
           <MovieDetailsContext.Provider value={{ movieDetails, movieDetailsHandler }}>
             {movieDetails.id ? <MovieDetails /> : null}
             <Navbar />

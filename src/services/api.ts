@@ -83,6 +83,17 @@ const fetchMovieDetails = async (id: number): Promise<Movie> => {
   return res ? parseMovies(res) : initialMovie;
 };
 
+const deleteSession = async (sessionId: string): Promise<boolean> => {
+  const res = await fetchFactory<{ success: boolean }>('/authentication/session', {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ session_id: sessionId }),
+  });
+  return res && res.success;
+};
+
 // custom fetch function to easily create new requests to the API
 const fetchFactory = async <T>(
   path: string,
@@ -101,6 +112,7 @@ const fetchFactory = async <T>(
 
 export {
   createSession,
+  deleteSession,
   getAccountDetails,
   getDiscoverMovies,
   getFavMovies,
