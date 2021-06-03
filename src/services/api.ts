@@ -2,6 +2,7 @@ import Search, { defaultSearch, isSearch } from '../interfaces/search';
 import parseMovies from '../helpers/parseMovies';
 import SearchResult from '../interfaces/searchResult';
 import AccountDetails from '../interfaces/accountDetails';
+import Movie, { initialMovie } from '../interfaces/movieDetails';
 // import SearchResult from '../interfaces/searchResult';
 
 const apiKey = process.env['REACT_APP_API_KEY'];
@@ -9,12 +10,12 @@ const apiURL = process.env['REACT_APP_API_URL'];
 
 const getDiscoverMovies = async (): Promise<SearchResult[]> => {
   const res = await fetchFactory<Search>('/discover/movie');
-  return isSearch(res) ? parseMovies(res.results) : defaultSearch.results;
+  return isSearch(res) ? res.results.map(movie => parseMovies(movie)) : defaultSearch.results;
 };
 
 const searchMovies = async (searchStr: string): Promise<SearchResult[]> => {
   const res = await fetchFactory<Search>('/search/movie', {}, `&query=${searchStr}`);
-  return isSearch(res) ? parseMovies(res.results) : defaultSearch.results;
+  return isSearch(res) ? res.results.map(movie => parseMovies(movie)) : defaultSearch.results;
 };
 
 const getToken = async (): Promise<string> => {
@@ -51,7 +52,7 @@ const getFavMovies = async (sessionId: string, userId: number): Promise<SearchRe
     {},
     `&session_id=${sessionId}`
   );
-  return res ? parseMovies(res.results) : defaultSearch.results;
+  return isSearch(res) ? res.results.map(movie => parseMovies(movie)) : defaultSearch.results;
 };
 
 const markAsFavorite = async (
@@ -77,6 +78,11 @@ const markAsFavorite = async (
   return res && res.success;
 };
 
+const fetchMovieDetails = async (id: number): Promise<Movie> => {
+  const res = await fetchFactory<Movie>(`/movie/${id}`);
+  return res ? parseMovies(res) : initialMovie;
+};
+
 // custom fetch function to easily create new requests to the API
 const fetchFactory = async <T>(
   path: string,
@@ -94,11 +100,12 @@ const fetchFactory = async <T>(
 };
 
 export {
-  getDiscoverMovies,
-  searchMovies,
-  getToken,
   createSession,
   getAccountDetails,
+  getDiscoverMovies,
   getFavMovies,
+  getToken,
+  fetchMovieDetails,
   markAsFavorite,
+  searchMovies,
 };
