@@ -26,7 +26,7 @@ const Navbar = () => {
     memoizedDebounce(target.value);
   };
 
-  const handleLogin = (action: string) => {
+  const handleLogin = (action: string): void => {
     if (action === 'login') {
       getToken().then(token => {
         window.location.href = loginRedirect(token);
@@ -42,7 +42,7 @@ const Navbar = () => {
     }
   };
 
-  const removeSearch = () => {
+  const removeSearch = (): void => {
     setSearchStr('');
     setMovies([]);
   };
