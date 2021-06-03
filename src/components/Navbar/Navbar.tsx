@@ -40,11 +40,12 @@ const Navbar = () => {
     <div className={styles['navbar']}>
       <input placeholder="search your movie" value={searchStr} onChange={handleSearch} />
       {movies.length ? <SearchResults movieList={movies} removeSearch={removeSearch} /> : null}
-      {sessionId ? (
+      {console.log(sessionId)}
+      {sessionId ? null : (
         <div className={styles['login']} onClick={() => handleClick()}>
           login
         </div>
-      ) : null}
+      )}
       {/* TODO: logout functionality */}
     </div>
   );
