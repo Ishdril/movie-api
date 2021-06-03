@@ -3,7 +3,7 @@ import addFav from '../../assets/addFav.svg';
 import removeFav from '../../assets/removeFav.svg';
 import styles from './MovieTile.module.css';
 import { useContext } from 'react';
-import favContext from '../../services/favContext';
+import favContext from '../../services/FavContext';
 
 interface MovieTileProps {
   movie: SearchResult;

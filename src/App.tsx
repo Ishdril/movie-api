@@ -14,8 +14,8 @@ import {
   getToken,
   markAsFavorite,
 } from './services/api';
-import favContext from './services/favContext';
-import LoginContext from './services/loginContext';
+import favContext from './services/FavContext';
+import LoginContext from './services/LoginContext';
 
 function App() {
   const [movies, setMovies] = useState<SearchResult[]>([]);

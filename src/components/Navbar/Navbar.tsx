@@ -2,7 +2,7 @@ import { ChangeEvent, useContext, useMemo, useState } from 'react';
 import { debounce } from '../../helpers/debounce';
 import SearchResult from '../../interfaces/searchResult';
 import { getToken, searchMovies } from '../../services/api';
-import LoginContext from '../../services/loginContext';
+import LoginContext from '../../services/LoginContext';
 import SearchResults from '../SearchResults/SearchResults';
 import styles from './Navbar.module.css';
 
