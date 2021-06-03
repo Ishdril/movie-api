@@ -1,12 +1,12 @@
 .movie-container {
-  width: 300px;
+  display: inline-block;
   height: 200px;
   margin: 10px;
   overflow: hidden;
   position: relative;
-  display: inline-block;
-  transition: transform 0.2s;
   scroll-snap-align: start;
+  transition: transform 0.2s;
+  width: 300px;
 }
 
 .movie-container:hover,
@@ -27,16 +27,16 @@
 }
 
 .movie {
-  display: flex;
-  flex-direction: row;
-  background-size: cover;
+  align-items: flex-end;
   background-position: center;
   background-repeat: no-repeat;
-  justify-content: space-between;
-  align-items: flex-end;
-  width: 100%;
-  height: 100%;
+  background-size: cover;
   cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .movie-container:hover .movie .movie__title,
@@ -45,22 +45,22 @@
 }
 
 .movie__title {
-  margin: 10px 5px;
-  height: 31px;
-  font-size: 1.5rem;
-  text-shadow: 0 0 3px var(--bg-black);
-  display: flex;
   align-items: flex-end;
+  display: flex;
+  font-size: 1.5rem;
+  height: 31px;
+  margin: 10px 5px;
+  text-shadow: 0 0 3px var(--bg-black);
 }
 
 .movie__fav-btn {
-  display: none;
-  margin: 5px;
   background: transparent;
   border: none;
-  outline: none;
   cursor: pointer;
+  display: none;
   filter: drop-shadow(0 0 2px var(--bg-black));
+  margin: 5px;
+  outline: none;
 }
 
 .movie:hover > .movie__fav-btn {

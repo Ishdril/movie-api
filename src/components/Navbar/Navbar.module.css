@@ -1,21 +1,21 @@
 .navbar {
-  position: sticky;
-  top: 0;
-  left: 0;
+  background-color: var(--bg-black);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  left: 0;
   padding: 2rem;
-  background-color: var(--bg-black);
+  position: sticky;
+  top: 0;
   z-index: 2;
 }
 
 .navbar > input,
 .login {
   background-color: var(--bg-gray);
+  border: 1px solid gray;
   border-radius: 5px;
   padding: 1rem;
-  border: 1px solid gray;
 }
 
 .navbar > input:focus {
@@ -23,7 +23,7 @@
 }
 
 .login {
-  display: flex;
   align-items: center;
   cursor: pointer;
+  display: flex;
 }

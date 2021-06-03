@@ -1,10 +1,10 @@
+import { MouseEvent, useContext } from 'react';
 import SearchResult from '../../interfaces/searchResult';
 import addFav from '../../assets/addFav.svg';
 import removeFav from '../../assets/removeFav.svg';
-import styles from './MovieTile.module.css';
-import { MouseEvent, useContext } from 'react';
 import favContext from '../../services/FavContext';
 import MovieDetailsContext from '../../services/MovieDetailsContext';
+import styles from './MovieTile.module.css';
 
 interface MovieTileProps {
   movie: SearchResult;

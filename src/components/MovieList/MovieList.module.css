@@ -1,12 +1,12 @@
 .list__container-horizontal {
+  color: var(--text-bright);
   display: flex;
   flex-direction: column;
-  overflow-x: auto;
-  overflow-y: hidden;
-  color: var(--text-bright);
-  scroll-snap-type: x mandatory;
   height: 220px;
   justify-content: center;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
 }
 
 .list__container-horizontal::-webkit-scrollbar {
@@ -33,25 +33,25 @@
 }
 
 .favorites__add-text {
-  font-size: 1.5rem;
   color: #9c9c9c;
+  font-size: 1.5rem;
   font-variant: small-caps;
   margin: 0 auto;
 }
 
 .list__get-more {
-  width: 100%;
-  display: flex;
   align-items: center;
+  display: flex;
+  width: 100%;
 }
 
 .get-more__btn {
   background-color: var(--bg-gray);
-  border-radius: 5px;
-  padding: 1rem;
   border: 1px solid gray;
-  margin: auto;
-  width: fit-content;
+  border-radius: 5px;
   cursor: pointer;
   font-size: 1.5rem;
+  padding: 1rem;
+  margin: auto;
+  width: fit-content;
 }
