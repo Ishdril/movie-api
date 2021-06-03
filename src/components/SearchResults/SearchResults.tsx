@@ -10,7 +10,7 @@ interface SearchResultsProps {
 const SearchResults = ({ movieList, removeSearch }: SearchResultsProps) => {
   return (
     <div className={styles['search__bg']} onClick={removeSearch}>
-      <div className={styles['search__container']}>
+      <div className={styles['search__container']} onClick={e => e.stopPropagation()}>
         <MovieList direction="horizontal" movieList={movieList} />
       </div>
     </div>
