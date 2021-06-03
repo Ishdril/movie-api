@@ -11,6 +11,7 @@ import {
   getAccountDetails,
   getDiscoverMovies,
   getFavMovies,
+  getToken,
   markAsFavorite,
 } from './services/api';
 import favContext from './services/favContext';
@@ -53,6 +54,7 @@ function App() {
   }, [sessionId]);
 
   const favHandler = (movie: SearchResult): void => {
+    console.log('here');
     const newFavValue = !favDictionary[movie.id];
     markAsFavorite(sessionId, userId, movie.id, newFavValue).then(res => {
       if (res) {
@@ -60,6 +62,10 @@ function App() {
         newFavValue
           ? setFavMovies([...favMovies, movie])
           : setFavMovies(favMovies.filter(mov => mov.id !== movie.id));
+      } else {
+        getToken().then(token => {
+          window.location.href = `https://www.themoviedb.org/authenticate/${token}?redirect_to=http://localhost:3000/`;
+        });
       }
     });
   };
