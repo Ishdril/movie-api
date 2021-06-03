@@ -1,9 +1,9 @@
 .search__bg {
   position: fixed;
-  top: 100%;
+  top: 6rem;
   left: 0;
   background-color: var(--bg-transparent);
-  height: calc(100vh - 100%);
+  height: 100%;
   z-index: 2;
 }
 

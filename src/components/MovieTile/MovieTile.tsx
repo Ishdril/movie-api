@@ -27,12 +27,7 @@ const MovieTile = ({ movie }: MovieTileProps) => {
       >
         <div className={styles['movie__title']}>{movie.title}</div>
         {
-          <button
-            className={`${styles['movie__fav-btn']} ${
-              favDictionary[movie.id] ? styles['movie__show-btn'] : ''
-            }`}
-            onClick={() => favHandler(movie)}
-          >
+          <button className={styles['movie__fav-btn']} onClick={() => favHandler(movie)}>
             <img
               src={favDictionary[movie.id] ? removeFav : addFav}
               alt={favDictionary[movie.id] ? 'remove from favourites' : 'add to favourites'}
