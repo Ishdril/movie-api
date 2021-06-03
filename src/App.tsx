@@ -34,13 +34,17 @@ function App() {
   const { search } = useLocation();
 
   useEffect(() => {
+    let isMounted = true;
     if (search) {
       const token = search.slice(search.indexOf('=') + 1, search.indexOf('&', 1));
       createSession(token).then(sesId => {
         localStorage.setItem('session_id', sesId);
-        setSessionId(sesId);
+        isMounted && setSessionId(sesId);
       });
     }
+    return () => {
+      isMounted = false;
+    };
   }, [search]);
 
   useEffect(() => {
@@ -102,7 +106,7 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div className="App" data-testid="app">
       <FavContext.Provider value={{ favDictionary, favHandler }}>
         <LoginContext.Provider value={{ sessionId, userId, handleLogout }}>
           <MovieDetailsContext.Provider value={{ movieDetails, movieDetailsHandler }}>

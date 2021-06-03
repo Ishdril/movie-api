@@ -36,10 +36,10 @@ const MovieList = ({ title, direction, movieList, nextSearch }: MovieListProps) 
         </div>
       </div>
       {direction === 'grid' ? (
-        <div className="list__get-more">
-          <div className={styles['get-more__btn']} onClick={nextSearch}>
+        <div className={styles['list__get-more']}>
+          <button className={styles['get-more__btn']} onClick={nextSearch}>
             Show more movies
-          </div>
+          </button>
         </div>
       ) : null}
     </div>

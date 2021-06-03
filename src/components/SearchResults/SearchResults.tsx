@@ -9,14 +9,14 @@ interface SearchResultsProps {
 
 const SearchResults = ({ movieList, removeSearch }: SearchResultsProps) => {
   return (
-    <div className={styles['search__bg']} onClick={removeSearch}>
+    <div className={styles['search__bg']} onClick={removeSearch} data-testid="searchResults">
       <div className={styles['search__container']} onClick={e => e.stopPropagation()}>
         {movieList.length ? (
           <MovieList direction="horizontal" movieList={movieList} />
         ) : (
           <div className={styles['search__no-movies']}>
             <span className={styles['no-movies__text']}>
-              Your search came back empty, try another one ;)
+              Your search came back empty, try another one ;-&#41;
             </span>
           </div>
         )}
