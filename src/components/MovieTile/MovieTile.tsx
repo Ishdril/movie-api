@@ -7,11 +7,10 @@ import favContext from '../../services/favContext';
 
 interface MovieTileProps {
   movie: SearchResult;
-  favHandler: (id: SearchResult) => void;
 }
 
-const MovieTile = ({ movie, favHandler }: MovieTileProps) => {
-  const favDictionary = useContext(favContext);
+const MovieTile = ({ movie }: MovieTileProps) => {
+  const { favDictionary, favHandler } = useContext(favContext);
 
   return (
     <div className={styles['movie-container']}>

@@ -1,11 +1,15 @@
-import { ChangeEvent, useMemo, useState } from 'react';
+import { ChangeEvent, useContext, useMemo, useState } from 'react';
 import { debounce } from '../../helpers/debounce';
 import SearchResult from '../../interfaces/searchResult';
 import { getToken, searchMovies } from '../../services/api';
+import LoginContext from '../../services/loginContext';
+import SearchResults from '../SearchResults/SearchResults';
+import styles from './Navbar.module.css';
 
 const Navbar = () => {
   const [searchStr, setSearchStr] = useState<string>('');
   const [movies, setMovies] = useState<SearchResult[]>([]);
+  const { sessionId } = useContext(LoginContext);
 
   const memoizedDebounce = useMemo(
     () =>
@@ -27,13 +31,21 @@ const Navbar = () => {
     });
   };
 
+  const removeSearch = () => {
+    setSearchStr('');
+    setMovies([]);
+  };
+
   return (
-    <div>
+    <div className={styles['navbar']}>
       <input placeholder="search your movie" value={searchStr} onChange={handleSearch} />
-      {movies.map(movie => (
-        <p key={movie.id}>{movie.title}</p>
-      ))}
-      <div onClick={() => handleClick()}>login</div>
+      {movies.length ? <SearchResults movieList={movies} removeSearch={removeSearch} /> : null}
+      {sessionId ? (
+        <div className={styles['login']} onClick={() => handleClick()}>
+          login
+        </div>
+      ) : null}
+      {/* TODO: logout functionality */}
     </div>
   );
 };

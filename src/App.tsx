@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import './App.css';
+import styles from './App.module.css';
 import Footer from './components/Footer/Footer';
 import MovieList from './components/MovieList/MovieList';
 import Navbar from './components/Navbar/Navbar';
+import FavDictionary from './interfaces/FavDictionary';
 import SearchResult from './interfaces/searchResult';
 import {
   createSession,
@@ -13,11 +14,12 @@ import {
   markAsFavorite,
 } from './services/api';
 import favContext from './services/favContext';
+import LoginContext from './services/loginContext';
 
 function App() {
   const [movies, setMovies] = useState<SearchResult[]>([]);
   const [favMovies, setFavMovies] = useState<SearchResult[]>([]);
-  const [favDictionary, setFavDictionary] = useState<{ [key: string]: true }>({});
+  const [favDictionary, setFavDictionary] = useState<FavDictionary>({});
   const [sessionId, setSessionId] = useState<string>(localStorage.getItem('session_id') || '');
   const [userId, setUserId] = useState<number>(0);
   const { search } = useLocation();
@@ -39,7 +41,7 @@ function App() {
         setUserId(userId);
         const favResult = await getFavMovies(sessionId, userId);
         setFavMovies(favResult);
-        const newFavs: { [key: string]: true } = {};
+        const newFavs: FavDictionary = {};
         favResult.forEach(movie => (newFavs[movie.id] = true));
         setFavDictionary(oldFavs => ({ ...oldFavs, ...newFavs }));
       }
@@ -64,10 +66,14 @@ function App() {
 
   return (
     <div className="App">
-      <favContext.Provider value={favDictionary}>
-        <Navbar />
-        <MovieList movieList={favMovies} favHandler={favHandler} />
-        <MovieList movieList={movies} favHandler={favHandler} />
+      <favContext.Provider value={{ favDictionary, favHandler }}>
+        <LoginContext.Provider value={{ sessionId, userId }}>
+          <Navbar />
+          <div className={styles['content']}>
+            <MovieList direction="horizontal" movieList={favMovies} />
+            <MovieList direction="grid" movieList={movies} />
+          </div>
+        </LoginContext.Provider>
       </favContext.Provider>
       <Footer />
     </div>
