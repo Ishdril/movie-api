@@ -5,6 +5,7 @@ import Footer from './components/Footer/Footer';
 import MovieDetails from './components/MovieDetails/MovieDetails';
 import MovieList from './components/MovieList/MovieList';
 import Navbar from './components/Navbar/Navbar';
+import loginRedirect from './helpers/loginRedirect';
 import FavDictionary from './interfaces/FavDictionary';
 import Movie, { initialMovie } from './interfaces/movieDetails';
 import SearchResult from './interfaces/searchResult';
@@ -68,7 +69,7 @@ function App() {
           : setFavMovies(favMovies.filter(mov => mov.id !== movie.id));
       } else {
         getToken().then(token => {
-          window.location.href = `https://www.themoviedb.org/authenticate/${token}?redirect_to=http://localhost:3000/`;
+          window.location.href = loginRedirect(token);
         });
       }
     });

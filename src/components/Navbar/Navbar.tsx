@@ -1,5 +1,6 @@
 import { ChangeEvent, useContext, useMemo, useState } from 'react';
 import { debounce } from '../../helpers/debounce';
+import loginRedirect from '../../helpers/loginRedirect';
 import SearchResult from '../../interfaces/searchResult';
 import { deleteSession, getToken, searchMovies } from '../../services/api';
 import LoginContext from '../../services/LoginContext';
@@ -28,7 +29,7 @@ const Navbar = () => {
   const handleLogin = (action: string) => {
     if (action === 'login') {
       getToken().then(token => {
-        window.location.href = `https://www.themoviedb.org/authenticate/${token}?redirect_to=http://localhost:3000/`;
+        window.location.href = loginRedirect(token);
       });
     } else if (action === 'logout') {
       deleteSession(sessionId).then(res => {
