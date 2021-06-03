@@ -12,4 +12,19 @@
   filter: opacity(100%);
   padding: 2rem;
   width: 99vw;
+  /* display: flex */
+}
+
+.search__no-movies {
+  display:flex;
+  height: 220px;
+  width: 100%;
+  align-items: center;
+}
+
+.no-movies__text {
+  color: #9c9c9c;
+  font-size: 1.5rem;
+  font-variant: small-caps;
+  margin: 0 auto;
 }

@@ -50,7 +50,7 @@ const Navbar = () => {
   return (
     <div className={styles['navbar']}>
       <input placeholder="search your movie" value={searchStr} onChange={handleSearch} />
-      {movies.length ? <SearchResults movieList={movies} removeSearch={removeSearch} /> : null}
+      {searchStr.length ? <SearchResults movieList={movies} removeSearch={removeSearch} /> : null}
       <div className={styles['login']} onClick={() => handleLogin(sessionId ? 'logout' : 'login')}>
         {sessionId ? 'logout' : 'login'}
       </div>

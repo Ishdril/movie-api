@@ -11,7 +11,15 @@ const SearchResults = ({ movieList, removeSearch }: SearchResultsProps) => {
   return (
     <div className={styles['search__bg']} onClick={removeSearch}>
       <div className={styles['search__container']} onClick={e => e.stopPropagation()}>
-        <MovieList direction="horizontal" movieList={movieList} />
+        {movieList.length ? (
+          <MovieList direction="horizontal" movieList={movieList} />
+        ) : (
+          <div className={styles['search__no-movies']}>
+            <span className={styles['no-movies__text']}>
+              Your search came back empty, try another one ;)
+            </span>
+          </div>
+        )}
       </div>
     </div>
   );
