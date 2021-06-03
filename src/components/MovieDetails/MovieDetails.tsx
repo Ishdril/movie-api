@@ -12,7 +12,7 @@ const MovieDetails = () => {
       <div className={styles['details__container']} onClick={e => e.stopPropagation()}>
         <div className={styles['scrollable']}>
           <div className={styles['details__summary']}>
-            <div className="movie-poster">
+            <div className={styles['summary__poster']}>
               <img src={movie.poster_path} alt={movie.title} />
             </div>
             <div className={styles['summary__properties']}>
