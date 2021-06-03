@@ -4,7 +4,7 @@ import styles from './MovieList.module.css';
 
 interface MovieListProps {
   movieList: SearchResult[];
-  favHandler: (id: SearchResult['id']) => void;
+  favHandler: (id: SearchResult) => void;
 }
 
 const MovieList = ({ movieList, favHandler }: MovieListProps) => {

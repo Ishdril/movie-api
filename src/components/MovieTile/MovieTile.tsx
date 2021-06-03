@@ -2,13 +2,17 @@ import SearchResult from '../../interfaces/searchResult';
 import addFav from '../../assets/addFav.svg';
 import removeFav from '../../assets/removeFav.svg';
 import styles from './MovieTile.module.css';
+import { useContext } from 'react';
+import favContext from '../../services/favContext';
 
 interface MovieTileProps {
   movie: SearchResult;
-  favHandler: (id: SearchResult['id']) => void;
+  favHandler: (id: SearchResult) => void;
 }
 
 const MovieTile = ({ movie, favHandler }: MovieTileProps) => {
+  const favDictionary = useContext(favContext);
+
   return (
     <div className={styles['movie-container']}>
       <div
@@ -23,13 +27,13 @@ const MovieTile = ({ movie, favHandler }: MovieTileProps) => {
         {
           <button
             className={`${styles['movie__fav-btn']} ${
-              movie.isFav ? styles['movie__show-btn'] : ''
+              favDictionary[movie.id] ? styles['movie__show-btn'] : ''
             }`}
-            onClick={() => favHandler(movie.id)}
+            onClick={() => favHandler(movie)}
           >
             <img
-              src={movie.isFav ? removeFav : addFav}
-              alt={movie.isFav ? 'remove from favourites' : 'add to favourites'}
+              src={favDictionary[movie.id] ? removeFav : addFav}
+              alt={favDictionary[movie.id] ? 'remove from favourites' : 'add to favourites'}
             />
           </button>
         }
