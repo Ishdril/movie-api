@@ -7,7 +7,8 @@ import MovieList from './components/MovieList/MovieList';
 import Navbar from './components/Navbar/Navbar';
 import loginRedirect from './helpers/loginRedirect';
 import FavDictionary from './interfaces/FavDictionary';
-import Movie, { initialMovie } from './interfaces/movieDetails';
+import Movie from './interfaces/movie';
+import IMovieDetails, { initialMovie } from './interfaces/movieDetails';
 import SearchResult from './interfaces/searchResult';
 import {
   createSession,
@@ -24,11 +25,11 @@ import MovieDetailsContext from './services/MovieDetailsContext';
 
 function App() {
   const [movies, setMovies] = useState<SearchResult[]>([]);
-  const [favMovies, setFavMovies] = useState<SearchResult[]>([]);
+  const [favMovies, setFavMovies] = useState<Movie[]>([]);
   const [favDictionary, setFavDictionary] = useState<FavDictionary>({});
   const [sessionId, setSessionId] = useState<string>(localStorage.getItem('session_id') || '');
   const [userId, setUserId] = useState<number>(0);
-  const [movieDetails, setMovieDetails] = useState<Movie>(initialMovie);
+  const [movieDetails, setMovieDetails] = useState<IMovieDetails>(initialMovie);
   const [discoverPage, setDiscoverPage] = useState<number>(1);
   const { search } = useLocation();
 
@@ -61,7 +62,7 @@ function App() {
     getFavs();
   }, [sessionId]);
 
-  const favHandler = (movie: SearchResult): void => {
+  const favHandler = (movie: Movie): void => {
     const newFavValue = !favDictionary[movie.id];
     markAsFavorite(sessionId, userId, movie.id, newFavValue).then(res => {
       if (res) {

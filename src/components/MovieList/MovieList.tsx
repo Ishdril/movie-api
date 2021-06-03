@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import SearchResult from '../../interfaces/searchResult';
+import Movie from '../../interfaces/movie';
 import LoginContext from '../../services/LoginContext';
 import MovieTile from '../MovieTile/MovieTile';
 import styles from './MovieList.module.css';
@@ -7,7 +7,7 @@ import styles from './MovieList.module.css';
 interface MovieListProps {
   title?: string;
   direction: string;
-  movieList: SearchResult[];
+  movieList: Movie[];
   nextSearch?: () => void;
 }
 

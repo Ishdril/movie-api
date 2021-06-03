@@ -3,10 +3,13 @@ import dayjs from 'dayjs';
 import advancedFormat from 'dayjs/plugin/advancedFormat';
 import MovieDetailsContext from '../../services/MovieDetailsContext';
 import styles from './MovieDetails.module.css';
+import FavContext from '../../services/FavContext';
 dayjs.extend(advancedFormat);
 
 const MovieDetails = () => {
   const { movieDetails: movie, movieDetailsHandler } = useContext(MovieDetailsContext);
+  const { favDictionary, favHandler } = useContext(FavContext);
+
   return (
     <div className={styles['details__bg']} onClick={() => movieDetailsHandler(0)}>
       <div className={styles['details__container']} onClick={e => e.stopPropagation()}>
@@ -39,6 +42,11 @@ const MovieDetails = () => {
               <p>
                 <span className={styles['field__gray']}>Rating:</span> {movie.vote_average} / 10
               </p>
+            </div>
+            <div className={styles['summary__add-to-favs']}>
+              <div className={styles['add__btn']} onClick={() => favHandler(movie)}>
+                {favDictionary[movie.id] ? 'Remove' : 'Add'}
+              </div>
             </div>
           </div>
           <div className={styles['details__description']}>

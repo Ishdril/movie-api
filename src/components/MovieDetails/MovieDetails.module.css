@@ -30,6 +30,7 @@
 
 .summary__properties {
   margin: 0 1rem 1rem 2rem;
+  flex:auto;
 }
 
 .summary__properties > p {
@@ -62,4 +63,15 @@
 .details__description > p {
   font-size: 1.5rem;
   line-height: 2rem;
+}
+
+.add__btn {
+  background-color: var(--bg-gray);
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 1rem;
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  margin-right: 2rem;
 }

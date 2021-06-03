@@ -1,13 +1,13 @@
 import { MouseEvent, useContext } from 'react';
-import SearchResult from '../../interfaces/searchResult';
 import addFav from '../../assets/addFav.svg';
 import removeFav from '../../assets/removeFav.svg';
 import FavContext from '../../services/FavContext';
 import MovieDetailsContext from '../../services/MovieDetailsContext';
 import styles from './MovieTile.module.css';
+import Movie from '../../interfaces/movie';
 
 interface MovieTileProps {
-  movie: SearchResult;
+  movie: Movie;
 }
 
 const MovieTile = ({ movie }: MovieTileProps) => {

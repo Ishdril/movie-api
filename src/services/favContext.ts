@@ -1,10 +1,10 @@
 import { createContext } from 'react';
 import FavDictionary from '../interfaces/FavDictionary';
-import SearchResult from '../interfaces/searchResult';
+import Movie from '../interfaces/movie';
 
 interface IFavContext {
   favDictionary: FavDictionary;
-  favHandler: (movie: SearchResult) => void;
+  favHandler: (movie: Movie) => void;
 }
 
 const FavContext = createContext<IFavContext>({
