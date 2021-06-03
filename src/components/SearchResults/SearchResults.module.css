@@ -1,8 +1,8 @@
 .search__bg {
-  position: absolute;
+  position: fixed;
   top: 100%;
   left: 0;
-  background-color: #1a1a1acc;
+  background-color: var(--bg-transparent);
   height: calc(100vh - 100%);
   z-index: 2;
 }

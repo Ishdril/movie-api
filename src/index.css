@@ -3,6 +3,7 @@
 :root {
   --bg-black: #101010;
   --bg-gray: #1a1a1a;
+  --bg-transparent: #1a1a1acc;
 }
 
 * {

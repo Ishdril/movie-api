@@ -4,6 +4,7 @@ import removeFav from '../../assets/removeFav.svg';
 import styles from './MovieTile.module.css';
 import { useContext } from 'react';
 import favContext from '../../services/FavContext';
+import MovieDetailsContext from '../../services/MovieDetailsContext';
 
 interface MovieTileProps {
   movie: SearchResult;
@@ -11,6 +12,7 @@ interface MovieTileProps {
 
 const MovieTile = ({ movie }: MovieTileProps) => {
   const { favDictionary, favHandler } = useContext(favContext);
+  const { movieDetailsHandler } = useContext(MovieDetailsContext);
 
   return (
     <div className={styles['movie-container']}>
@@ -19,7 +21,8 @@ const MovieTile = ({ movie }: MovieTileProps) => {
         style={{ backgroundImage: `url(${movie.backdrop_path})` }}
         onClick={event => {
           if (event.currentTarget === event.target) {
-          } // TODO: handle movie Details
+            movieDetailsHandler(movie.id);
+          }
         }}
       >
         <div className={styles['movie__title']}>{movie.title}</div>
