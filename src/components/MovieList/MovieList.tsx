@@ -8,9 +8,10 @@ interface MovieListProps {
   title?: string;
   direction: string;
   movieList: SearchResult[];
+  nextSearch?: () => void;
 }
 
-const MovieList = ({ title, direction, movieList }: MovieListProps) => {
+const MovieList = ({ title, direction, movieList, nextSearch }: MovieListProps) => {
   const { sessionId } = useContext(LoginContext);
   return (
     <div className={styles['list']}>
@@ -34,6 +35,13 @@ const MovieList = ({ title, direction, movieList }: MovieListProps) => {
           )}
         </div>
       </div>
+      {direction === 'grid' ? (
+        <div className="list__get-more">
+          <div className={styles['get-more__btn']} onClick={nextSearch}>
+            Show more movies
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 };

@@ -29,6 +29,7 @@ function App() {
   const [sessionId, setSessionId] = useState<string>(localStorage.getItem('session_id') || '');
   const [userId, setUserId] = useState<number>(0);
   const [movieDetails, setMovieDetails] = useState<Movie>(initialMovie);
+  const [discoverPage, setDiscoverPage] = useState<number>(1);
   const { search } = useLocation();
 
   useEffect(() => {
@@ -53,8 +54,9 @@ function App() {
         setFavDictionary(oldFavs => ({ ...oldFavs, ...newFavs }));
       }
     };
-    getDiscoverMovies().then(movies => {
-      setMovies(movies);
+    getDiscoverMovies().then(search => {
+      setMovies(search.results);
+      setDiscoverPage(search.page);
     });
     getFavs();
   }, [sessionId]);
@@ -91,6 +93,13 @@ function App() {
     localStorage.removeItem('session_id');
   };
 
+  const discoverNext = () => {
+    getDiscoverMovies(discoverPage + 1).then(newSearch => {
+      setMovies(oldMovies => [...oldMovies, ...newSearch.results]);
+      setDiscoverPage(newSearch.page);
+    });
+  };
+
   return (
     <div className="App">
       <favContext.Provider value={{ favDictionary, favHandler }}>
@@ -100,7 +109,12 @@ function App() {
             <Navbar />
             <div className={styles['content']}>
               <MovieList title="Favourites" direction="horizontal" movieList={favMovies} />
-              <MovieList title="Discover new movies" direction="grid" movieList={movies} />
+              <MovieList
+                title="Discover new movies"
+                direction="grid"
+                movieList={movies}
+                nextSearch={discoverNext}
+              />
             </div>
           </MovieDetailsContext.Provider>
         </LoginContext.Provider>

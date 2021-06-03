@@ -3,14 +3,15 @@ import parseMovies from '../helpers/parseMovies';
 import SearchResult from '../interfaces/searchResult';
 import AccountDetails from '../interfaces/accountDetails';
 import Movie, { initialMovie } from '../interfaces/movieDetails';
-// import SearchResult from '../interfaces/searchResult';
 
 const apiKey = process.env['REACT_APP_API_KEY'];
 const apiURL = process.env['REACT_APP_API_URL'];
 
-const getDiscoverMovies = async (): Promise<SearchResult[]> => {
-  const res = await fetchFactory<Search>('/discover/movie');
-  return isSearch(res) ? res.results.map(movie => parseMovies(movie)) : defaultSearch.results;
+const getDiscoverMovies = async (page = 1): Promise<Search> => {
+  const res = await fetchFactory<Search>('/discover/movie', {}, `&page=${page}`);
+  if (isSearch(res)) res.results = res.results.map(movie => parseMovies(movie));
+  const searchResult = res || defaultSearch;
+  return searchResult;
 };
 
 const searchMovies = async (searchStr: string): Promise<SearchResult[]> => {
